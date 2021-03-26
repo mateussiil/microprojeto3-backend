@@ -8,4 +8,4 @@ server.use(cors());
 server.use(express.json());
 server.use(routes);
 
-server.listen(3336);
+server.listen(process.env.PORT | 3336);
