@@ -1,18 +1,18 @@
 const { Router } = require('express');
 const uuid = require('uuid');
 const routes = Router();
+const multer = require('multer');
+const config = require('../multer');
 var fs = require('fs');
-
-// const foods =  
 
 let rawdata = fs.readFileSync('./foods.json');
 let foods = JSON.parse(rawdata);
 
 const users = []
 
-// fs.writeFile('data.json',JSON.stringify(parseJson),function(err){
-//     if(err) throw err;
-//   })
+routes.post('/upload', multer(config).single('file'), (req, res) => {
+    return res.json(foods)
+});
 
 routes.get('/foods', (req, res) => {
     return res.json(foods)
